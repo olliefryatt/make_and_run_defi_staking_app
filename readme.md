@@ -24,4 +24,9 @@ Create boiler plate folder template to hold our our work in. Will want to work w
 
 Note usually a project will have several repos covering all these topics. Here I'm putting everything into one repo. However, other porjects you might see that python/solidity would be in one repo and all the front end code would be in another repot. 
 
+> $ cd front_end
+> $ yarn
+> $ yarn start
+
+Should see a web app fornt end appear. Pree control C to close this
 
