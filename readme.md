@@ -11,4 +11,6 @@ Build out a web based app that interacts with our smart contracts. Users should 
 
 3. Unit testing of smart contracts. See test/unit & also 'conftest.py'. 
 
-4. 
+4. Build front end for our application
+
+> npx -version
