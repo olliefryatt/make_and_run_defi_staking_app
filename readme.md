@@ -13,4 +13,7 @@ Build out a web based app that interacts with our smart contracts. Users should 
 
 4. Build front end for our application
 
-> npx -version
+Check that we have npx insallated.
+
+> $ npx -version
+
