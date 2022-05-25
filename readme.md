@@ -32,3 +32,17 @@ Note usually a project will have several repos covering all these topics. Here I
 
 Should see a web app fornt end appear. Pree control C to close this
 
+Will now also use https://usedapp.io/ to help beef up our front end. Rather than building it all out from scatch. 
+
+> $ yarn add @usedapp/core
+
+Initally start work in src/App.tsx. For more detail on this 14:15:00 https://www.youtube.com/watch?v=M576WGiDBdQ&t=50271s
+
+Important files
+- Index.tsx
+- App tsx
+- Components 
+
+For styling will use https://mui.com/. Do set up if necessary. I used this command, doesn't seem to match their lattest docs. 
+
+> $ yarn add @material-ui/core
