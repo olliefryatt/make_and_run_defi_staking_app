@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// Brownie use
+// Brownie ca use
 import "OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/access/Ownable.sol";
 import "OpenZeppelin/openzeppelin-contracts@4.2.0/contracts/token/ERC20/IERC20.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
-
 
 // Remix can use
 //import "@openzeppelin/contracts/access/Ownable.sol";
@@ -41,9 +40,7 @@ contract TokenFarm is Ownable {
     // 
     IERC20 public dappToken;
 
-
-
-    // FUNTIONCS
+    // FUNCTIONS
 
     // Get address of our DappToken
     constructor(address _dappTokenAddress) {

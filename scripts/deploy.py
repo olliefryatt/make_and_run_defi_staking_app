@@ -1,10 +1,14 @@
 from scripts.helpful_scripts import get_account, get_contract 
 from brownie import DappToken, TokenFarm, network, config
 from web3 import Web3
+import yaml
+import json
+import os
+import shutil
 
 KEPT_BALANCE = Web3.toWei(100, "ether")
 
-def deploy_token_farm_and_dapp_token():
+def deploy_token_farm_and_dapp_token(front_end_update=False):
     account = get_account()
     print(f"The active network is {network.show_active()}")
     print(f"Account being used to deploy: {account}")
@@ -41,6 +45,9 @@ def deploy_token_farm_and_dapp_token():
         weth_token: get_contract("eth_usd_price_feed"), # WETH = eth
     }
     add_allowed_tokens(token_farm, dict_of_allowed_tokens, account)
+    # Default is False so won't exercute unless instrucuted to to in main body of the funtion
+    if front_end_update:
+        update_front_end()
     return token_farm, dapp_token
 
 
@@ -60,5 +67,37 @@ def add_allowed_tokens(token_farm, dict_of_allowed_tokens, account):
         set_tx.wait(1)
     return token_farm
 
+
+
+def update_front_end():
+    # In the real world a lot of these would be set & then you would just hard copy them over
+    # However, as we're still buidling/developing we can use this script to update fron end app
+
+    # START Sending the front end our config in JSON format
+    copy_folders_to_front_end("./build", "./front_end/src/chain-info")
+
+    # START - Send the config file to front end folder so they have access to materials in there
+    with open("brownie-config.yaml", "r") as brownie_config:
+        # Import into a dictionary object
+        config_dict = yaml.load(brownie_config, Loader=yaml.FullLoader)
+        # Send this as a JSON object to the front end folder
+        # Open source folder in write mode
+        with open("./front_end/src/brownie-config.json", "w") as brownie_config_json:
+            # dump it into this file
+            json.dump(config_dict, brownie_config_json)
+    print("Front end updated!")
+
+
+def copy_folders_to_front_end(src, dest):
+    # src <-- source folder
+    # est <-- destination folder 
+    # Check if it exsits
+    if os.path.exists(dest):
+        # If so then remove it
+        shutil.rmtree(dest)
+    # Then copy everything over from the build folder
+    shutil.copytree(src, dest)
+
+
 def main():
-    deploy_token_farm_and_dapp_token()
+    deploy_token_farm_and_dapp_token(front_end_update=True)
